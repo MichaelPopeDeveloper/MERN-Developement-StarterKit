@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Login from '../Login/Login';
 import { connect } from 'react-redux';
-import logo from '../../logo.svg';
 import '../../styles/app.css';
 import { loginUser } from '../../actions/index';
 

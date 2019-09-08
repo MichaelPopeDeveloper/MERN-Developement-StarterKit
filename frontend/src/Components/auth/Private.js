@@ -14,18 +14,20 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-require("./App.css");
-var Routes_1 = require("./Components/Routes");
-var App = (function (_super) {
-    __extends(App, _super);
-    function App() {
+var logo_svg_1 = require("../../logo.svg");
+require("./../../styles/app.css");
+var Private = (function (_super) {
+    __extends(Private, _super);
+    function Private() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    App.prototype.render = function () {
-        return (react_1["default"].createElement("div", { className: "container-fluid" },
-            react_1["default"].createElement(Routes_1["default"], null)));
+    Private.prototype.render = function () {
+        return (react_1["default"].createElement("div", { className: "App" },
+            react_1["default"].createElement("header", { className: "App-header" },
+                react_1["default"].createElement("img", { src: logo_svg_1["default"], className: "App-logo", alt: "logo" }),
+                react_1["default"].createElement("h1", { className: "text-white" }, "Private Component"))));
     };
-    return App;
+    return Private;
 }(react_1.Component));
-exports["default"] = App;
-//# sourceMappingURL=App.js.map
+exports["default"] = Private;
+//# sourceMappingURL=Private.js.map

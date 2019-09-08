@@ -6,8 +6,8 @@ import {
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
-import Private from './Auth/Private';
-import PrivateRoute from './Auth/PrivateRoute';
+import Private from './auth/Private';
+import PrivateRoute from './auth/PrivateRoute';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/index';
 
@@ -25,8 +25,21 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class Routes extends Component {
-  constructor(props) {
+interface IAppState {
+  user: IUser | false
+}
+
+interface IAppProps {
+  login: (user: IUser | false) => any,
+  logout: () => any
+}
+
+interface IUser {
+  username: string,
+}
+
+class Routes extends Component<IAppProps, IAppState> {
+  constructor(props: IAppProps) {
     super(props);
 
     this.state = {
@@ -44,7 +57,7 @@ class Routes extends Component {
           if (result.status === 200) return this.props.login(false);
           return this.setState({ user: result.data.user });
         })
-        .catch(error => this.props.logout(false)); //Display server error to user gracefully, not just keeping them logged out
+        .catch((error: Error) => this.props.logout(false)); //Display server error to user gracefully, not just keeping them logged out
     }
 
 
@@ -55,7 +68,7 @@ class Routes extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <PrivateRoute path="/private" component={Private} />
+        <PrivateRoute path="/private" {...this.state} component={Private} />
       </Router>
     );
   }

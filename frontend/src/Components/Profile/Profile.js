@@ -14,18 +14,26 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-require("./App.css");
-var Routes_1 = require("./Components/Routes");
-var App = (function (_super) {
-    __extends(App, _super);
-    function App() {
+var react_redux_1 = require("react-redux");
+require("../../styles/app.css");
+var index_1 = require("../../actions/index");
+var mapStateToProps = function (state) {
+    return { state: state };
+};
+function mapDispatchToProps(dispatch) {
+    return {
+        loginUser: function (user) { return dispatch(index_1.loginUser(user)); }
+    };
+}
+var Profile = (function (_super) {
+    __extends(Profile, _super);
+    function Profile() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    App.prototype.render = function () {
-        return (react_1["default"].createElement("div", { className: "container-fluid" },
-            react_1["default"].createElement(Routes_1["default"], null)));
+    Profile.prototype.render = function () {
+        return (react_1["default"].createElement("div", { className: "row" }));
     };
-    return App;
+    return Profile;
 }(react_1.Component));
-exports["default"] = App;
-//# sourceMappingURL=App.js.map
+exports["default"] = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Profile);
+//# sourceMappingURL=Profile.js.map

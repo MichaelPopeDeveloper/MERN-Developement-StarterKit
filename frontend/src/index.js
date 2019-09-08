@@ -1,23 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-
-import { Provider } from 'react-redux';
-import createStore from './store/index';
-import { PersistGate } from 'redux-persist/integration/react';
-
-const { store, persistor } = createStore();
-
-ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+"use strict";
+exports.__esModule = true;
+var react_1 = require("react");
+var react_dom_1 = require("react-dom");
+require("./index.css");
+var App_1 = require("./App");
+var serviceWorker = require("./serviceWorker");
+var react_redux_1 = require("react-redux");
+var index_1 = require("./store/index");
+var react_2 = require("redux-persist/integration/react");
+var _a = index_1["default"](), store = _a.store, persistor = _a.persistor;
+react_dom_1["default"].render(react_1["default"].createElement(react_redux_1.Provider, { store: store },
+    react_1["default"].createElement(react_2.PersistGate, { loading: null, persistor: persistor },
+        react_1["default"].createElement(App_1["default"], null))), document.getElementById('root'));
 serviceWorker.unregister();
+//# sourceMappingURL=index.js.map

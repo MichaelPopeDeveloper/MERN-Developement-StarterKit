@@ -17,9 +17,13 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+interface PrivateRouteProps {
+  component: React.Component,
+  user: object,
+}
 
-class PrivateRoute extends Component {
-  constructor(props) {
+class PrivateRoute extends Component<PrivateRouteProps, {}> {
+  constructor(props: PrivateRouteProps) {
     super(props);
     this.state = {
       user: false,
@@ -35,25 +39,13 @@ class PrivateRoute extends Component {
     axios.get('/user')
       .then(result => {
         this.props.login(result.data.user);
-       // this.setState({ user: result.data.user, isLoaded: true });
+        // this.setState({ user: result.data.user, isLoaded: true });
         // console.log('result private', result);
         console.log('props private', this.props)
       })
       .catch(error => error);
   }
 
-  // authRender = () => {
-  //   // axios.get('/user')
-  //   //   .then(result => console.log(result))
-  //   //   .catch(error => error);
-  //    if (this.state.user) {
-  //     console.log(this.state.user);
-  //     return <Route
-  //       path={this.props.path}
-  //       component={this.props.component}
-  //     />
-  //   } 
-  // }
 
   //render() {
   render = () => {
@@ -63,7 +55,7 @@ class PrivateRoute extends Component {
       <Route
         {...rest}
         render={(props) =>
-          user ? (
+          this.props ? (
             <Component {...props} />
           ) : (
               <Redirect

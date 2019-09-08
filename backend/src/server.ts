@@ -17,7 +17,7 @@ import { connect } from 'mongoose';
 export class Server {
   private port: any = process.env.PORT || 3001;
   public app: express.Application;
-  private dbName = 'pet-finder';
+  private dbName = 'CryptoPizza';
 
   /**
    * Bootstrap the application.
@@ -84,14 +84,14 @@ export class Server {
 
     this.app.use(
       session({
-        secret: 'midoria-shonen', // change
+        secret: process.env.SESSION_SECRET || 'midoria-shonen',
         resave: false,
         saveUninitialized: false,
 
         cookie: {
           // httpOnly: true,
           // secure: true,
-        }
+        },
       }));
 
     this.app.use(passport.initialize());
